@@ -1,4 +1,10 @@
-import { ReservationsState, ReservationActionTypes, CREATE_RESERVATION, DELETE_RESERVATION } from './types';
+import {
+  ReservationsState,
+  ReservationActionTypes,
+  CREATE_RESERVATION,
+  DELETE_RESERVATION,
+  EDIT_RESERVATION,
+} from './types';
 import { v4 } from 'uuid';
 
 const initialState: ReservationsState = {
@@ -33,6 +39,19 @@ export const reservationsReducer = (state = initialState, action: ReservationAct
         ...state,
         reservations: state.reservations.filter((r) => r.id !== action.payload),
       };
+    case EDIT_RESERVATION:
+      const reservation = state.reservations.find((r) => r.id === action.payload.id);
+
+      if (!reservation) {
+        return state;
+      }
+
+      const newState = state.reservations.filter((r) => r.id !== action.payload.id);
+      return {
+        ...state,
+        reservations: [...newState, action.payload],
+      };
+
     default:
       return state;
   }

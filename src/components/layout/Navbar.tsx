@@ -4,11 +4,13 @@ import { Brightness5, Brightness6 } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import { toggleDarkMode } from '../../redux/theme';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
   createStyles({
     title: {
       flexGrow: 1,
+      textDecoration: 'none',
     },
   }),
 );
@@ -22,7 +24,7 @@ export const Navbar: React.FC = () => {
   return (
     <AppBar position='static' color='primary'>
       <Toolbar>
-        <Typography className={classes.title} variant='h6'>
+        <Typography className={classes.title} variant='h6' color='inherit' component={Link} to='/'>
           Test Reservations
         </Typography>
         <IconButton edge='end' color='inherit' onClick={() => dispatch(toggleDarkMode())}>

@@ -2,8 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/rootReducer';
 import { ReservationCard } from '../components';
-import { Grid, makeStyles, Theme, createStyles, Fab } from '@material-ui/core';
+import { Grid, makeStyles, Theme, createStyles, Fab, Typography } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,6 +18,14 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
       bottom: theme.spacing(6),
       right: theme.spacing(6),
+    },
+    messageContainer: {
+      flex: 1,
+      height: '90vh',
+    },
+    message: {
+      color: theme.palette.grey[500],
+      textAlign: 'center',
     },
   }),
 );
@@ -35,8 +44,14 @@ export const HomePage: React.FC = () => {
             </Grid>
           ))}
         </Grid>
-      ) : null}
-      <Fab className={classes.fab} color='secondary'>
+      ) : (
+        <Grid container direction='column' className={classes.messageContainer} justify='center' alignItems='center'>
+          <Typography className={classes.message} variant='h5'>
+            You can add new reservations by clicking on the <code>+</code> sign below
+          </Typography>
+        </Grid>
+      )}
+      <Fab className={classes.fab} color='secondary' component={Link} to='/create'>
         <Add />
       </Fab>
     </div>

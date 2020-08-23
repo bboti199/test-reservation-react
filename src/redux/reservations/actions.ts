@@ -9,3 +9,8 @@ export const deleteReservation = (reservationId: string): ReservationActionTypes
   type: 'DELETE_RESERVATION',
   payload: reservationId,
 });
+
+export const editReservation = (reservation: Reservation): ReservationActionTypes => ({
+  type: 'EDIT_RESERVATION',
+  payload: reservation,
+});

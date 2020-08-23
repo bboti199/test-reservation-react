@@ -13,6 +13,7 @@ export interface ReservationsState {
 
 export const CREATE_RESERVATION = 'CREATE_RESERVATION';
 export const DELETE_RESERVATION = 'DELETE_RESERVATION';
+export const EDIT_RESERVATION = 'EDIT_RESERVATION';
 
 interface CreateReservationAction {
   type: typeof CREATE_RESERVATION;
@@ -24,4 +25,9 @@ interface DeleteReservationAction {
   payload: string;
 }
 
-export type ReservationActionTypes = CreateReservationAction | DeleteReservationAction;
+interface EditReservationAction {
+  type: typeof EDIT_RESERVATION;
+  payload: Reservation;
+}
+
+export type ReservationActionTypes = CreateReservationAction | DeleteReservationAction | EditReservationAction;

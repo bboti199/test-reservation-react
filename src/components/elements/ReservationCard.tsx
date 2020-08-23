@@ -17,6 +17,7 @@ import moment from 'moment';
 import { Edit, Delete } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
 import { deleteReservation } from '../../redux/reservations/actions';
+import { Link } from 'react-router-dom';
 
 interface ReservationCardProps {
   item: Reservation;
@@ -72,7 +73,7 @@ export const ReservationCard: React.FC<ReservationCardProps> = ({ item }: Reserv
         {item.email && <Typography variant='body1'>Email: {item.email}</Typography>}
       </CardContent>
       <CardActions className={classes.cardBottom}>
-        <Button color='secondary' startIcon={<Edit />}>
+        <Button color='secondary' startIcon={<Edit />} component={Link} to={`/edit/${item.id}`}>
           Edit
         </Button>
         <Button className={classes.deleteButton} onClick={onDelete} startIcon={<Delete />}>
